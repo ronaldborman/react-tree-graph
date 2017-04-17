@@ -1,6 +1,7 @@
 import clone from 'clone';
 import { hierarchy, tree } from 'd3-hierarchy';
 import React from 'react';
+import TreeModel from 'tree-model';
 import Link from './link';
 import Node from './node';
 
@@ -51,8 +52,18 @@ export default class Tree extends React.PureComponent{
 		let nodes = root.descendants();
 		let links = root.links();
 
-		nodes.forEach(node => {
+/*	nodes.forEach(node => {
 			node.y += this.props.margins.top;
+		});*/
+
+		let model = new TreeModel();
+		let baseColor = 'black';
+
+		root[0].data.linkColor = (root[0].data.linkColor || baseColor);
+
+		model.parse(root).walk(({model}) => {
+			model.y += this.props.margins.top;
+			model.data.strokeColor = (model.data.linkColor || model.parent.data.strokeColor);
 		});
 
 		return (
@@ -63,6 +74,7 @@ export default class Tree extends React.PureComponent{
 						className={this.props.linkClass}
 						keyProp={this.props.keyProp}
 						onClick={this.props.linkClickHandler}
+						stroke={link.target.data.strokeColor}
 						source={link.source}
 						target={link.target}
 						{...link.data}/>)

@@ -28,7 +28,7 @@ export default class Link extends React.PureComponent{
 			this.props.target.y);
 
 		return (
-			<path className={this.props.className} d={d} onClick={this.handleClick}/>);
+			<path className={this.props.className} d={d} onClick={this.handleClick} stroke={this.props.stroke}/>);
 	}
 }
 
