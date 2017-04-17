@@ -193,7 +193,7 @@ var Tree = function (_React$PureComponent) {
 			var model = new _treeModel2.default();
 			var baseColor = 'black';
 
-			root[0].data.linkColor = root[0].data.linkColor || baseColor;
+			root.data.linkColor = root.data.linkColor || baseColor;
 
 			model.parse(root).walk(function (_ref) {
 				var model = _ref.model;
