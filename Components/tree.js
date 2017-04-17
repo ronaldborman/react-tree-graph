@@ -59,7 +59,7 @@ export default class Tree extends React.PureComponent{
 		let model = new TreeModel();
 		let baseColor = 'black';
 
-		root[0].data.linkColor = (root[0].data.linkColor || baseColor);
+		root.data.linkColor = (root.data.linkColor || baseColor);
 
 		model.parse(root).walk(({model}) => {
 			model.y += this.props.margins.top;
